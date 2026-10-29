@@ -1,0 +1,134 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens. Channels are space-separated RGB so Tailwind can apply opacity. */
+:root,
+[data-theme='dark'] {
+  --bg: 7 8 10; /* OLED near-black */
+  --surface: 14 15 19;
+  --raised: 21 23 29;
+  --hover: 29 31 39;
+  --line: 34 37 46;
+  --line-strong: 52 56 69;
+  --fg: 236 238 243;
+  --muted: 160 165 180; /* 7.9:1 on surface */
+  --subtle: 112 118 135; /* 4.6:1 on surface – labels only */
+  --accent: 72 150 255; /* Glotta brand blue */
+  --accent-fg: 7 8 10;
+  --ok: 74 222 128;
+  --warn: 251 191 36;
+  --danger: 248 113 113;
+  --info: 56 189 248;
+  --review: 192 132 252;
+
+  --radius: 6px;
+  --radius-lg: 10px;
+  --shadow-pop: 0 12px 32px -8px rgb(0 0 0 / 0.7), 0 0 0 1px rgb(var(--line));
+  --focus: 0 0 0 2px rgb(var(--bg)), 0 0 0 4px rgb(var(--accent));
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: 246 247 249;
+  --surface: 255 255 255;
+  --raised: 250 250 252;
+  --hover: 240 241 245;
+  --line: 226 228 234;
+  --line-strong: 205 208 217;
+  --fg: 17 19 24;
+  --muted: 82 88 104;
+  --subtle: 107 113 128;
+  --accent: 29 108 230;
+  --accent-fg: 255 255 255;
+  --ok: 22 163 74;
+  --warn: 180 120 0;
+  --danger: 220 38 38;
+  --info: 8 145 178;
+  --review: 147 51 234;
+  --shadow-pop: 0 12px 32px -8px rgb(15 23 42 / 0.18), 0 0 0 1px rgb(var(--line));
+  color-scheme: light;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-bg font-sans text-[14px] leading-[1.5] text-fg antialiased;
+  }
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--focus);
+    border-radius: var(--radius);
+  }
+  ::selection {
+    background: rgb(var(--accent) / 0.35);
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--line-strong)) transparent;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-lg border border-line bg-surface;
+  }
+  .label {
+    @apply text-[12px] font-medium uppercase tracking-[0.06em] text-subtle;
+  }
+  .input {
+    @apply h-9 w-full rounded border border-line bg-bg px-3 text-[14px] text-fg placeholder:text-subtle transition-colors duration-fast hover:border-line-strong focus:border-accent;
+  }
+  .kbd {
+    @apply rounded border border-line bg-raised px-1.5 py-px font-mono text-[11px] text-muted;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes slide-in {
+  from {
+    transform: translateX(16px);
+    opacity: 0;
+  }
+}
+@keyframes pulse-soft {
+  50% {
+    opacity: 0.45;
+  }
+}
+.anim-fade {
+  animation: fade-in var(--dur-base) ease-out;
+}
+.anim-slide {
+  animation: slide-in var(--dur-base) cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.skeleton {
+  background: rgb(var(--raised));
+  animation: pulse-soft 1.4s ease-in-out infinite;
+  border-radius: var(--radius);
+}

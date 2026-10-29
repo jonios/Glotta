@@ -1,0 +1,58 @@
+<!doctype html>
+<!-- Source of docs/assets/banner.png (1280x640, also usable as the GitHub social preview).
+     Re-render: node scripts/render-branding.mjs -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; width: 1280px; height: 640px; overflow: hidden; }
+  body {
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif; color: #e8ecf5;
+    background:
+      radial-gradient(700px 420px at 12% 18%, rgba(59,130,246,.30), transparent 70%),
+      radial-gradient(640px 420px at 92% 92%, rgba(139,92,246,.30), transparent 70%),
+      #0b0e16;
+    position: relative;
+  }
+  .grid { position: absolute; inset: 0; background-image:
+      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 40px 40px; mask-image: radial-gradient(900px 520px at 50% 50%, #000 40%, transparent 85%); }
+  .wrap { position: absolute; inset: 0; display: flex; align-items: center; gap: 56px; padding: 0 96px; }
+  .logo { width: 210px; height: 210px; flex: none; filter: drop-shadow(0 18px 40px rgba(76,110,245,.45)); }
+  h1 { margin: 0; font-size: 112px; font-weight: 800; letter-spacing: -0.045em; line-height: 1;
+       background: linear-gradient(90deg, #ffffff 0%, #c9d6ff 100%); -webkit-background-clip: text; color: transparent; }
+  p { margin: 18px 0 0; font-size: 31px; font-weight: 500; color: #aab4c8; line-height: 1.35; max-width: 760px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+  .chip { font-size: 19px; font-weight: 500; color: #cfd8ea; padding: 8px 16px; border-radius: 999px;
+          border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); }
+  .chip b { color: #8fb3ff; font-weight: 600; }
+  /* Floating language tags around the edges */
+  .tag { position: absolute; font-size: 22px; font-weight: 600; padding: 7px 14px; border-radius: 12px;
+         background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.10); color: rgba(232,236,245,.55); }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <span class="tag" style="top:46px;right:300px">Hola</span>
+  <span class="tag" style="top:92px;right:120px">Bonjour</span>
+  <span class="tag" style="top:30px;right:40px" dir="rtl">مرحبا</span>
+  <span class="tag" style="bottom:52px;left:96px">Привет</span>
+  <span class="tag" style="bottom:40px;left:250px">こんにちは</span>
+  <span class="tag" style="bottom:70px;left:430px" dir="rtl">سلام</span>
+  <div class="wrap">
+    <img class="logo" src="../../web/public/glotta-mark.svg" alt="">
+    <div>
+      <h1>Glotta</h1>
+      <p>Open-source translation management for apps, websites and documents.</p>
+      <div class="chips">
+        <span class="chip">Review workflow</span>
+        <span class="chip">Excel &amp; CSV import</span>
+        <span class="chip">AI translation</span>
+        <span class="chip">PostgreSQL</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
